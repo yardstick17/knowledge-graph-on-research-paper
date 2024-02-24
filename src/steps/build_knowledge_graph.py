@@ -8,13 +8,20 @@ import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
+
 class BuildKnowledgeGraph(Step):
     def execute(self, data_container: DataContainer):
         graph = get_graph(data_container.all_section_triples)
-        nx.draw(graph, with_labels=True, font_weight='bold', node_color='skyblue', node_size=1500, edge_color='gray')
+        nx.draw(
+            graph,
+            with_labels=True,
+            font_weight="bold",
+            node_color="skyblue",
+            node_size=1500,
+            edge_color="gray",
+        )
         plt.savefig(data_container.output_kg_plot_path)
-        logger.info(f"Knowledge graph plot saved at: {data_container.output_kg_plot_path }")
-
-
-
-
+        logger.info(
+            f"Knowledge graph plot saved at: {data_container.output_kg_plot_path }"
+        )
+        return data_container

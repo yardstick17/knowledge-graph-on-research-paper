@@ -10,3 +10,4 @@ class DocumentRelationExtraction(Step):
             result = get_triplets(section)
             all_section_triples.extend(result)
         data_container.all_section_triples = all_section_triples
+        return data_container

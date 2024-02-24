@@ -9,4 +9,3 @@ class DataContainer:
     # Variables passed to the pipeline and are updated by different steps
     document: List
     all_section_triples: List
-

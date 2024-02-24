@@ -35,5 +35,5 @@ def main(config_path):
         data_container = step_object.execute(data_container=data_container)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
