@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 
 class BuildKnowledgeGraph(Step):
     def execute(self, data_container: DataContainer):
-        logger.info(f"Executing the build graph using: {len(data_container.all_section_triples)} elements")
+        logger.info(
+            f"Executing the build graph using: {len(data_container.all_section_triples)} elements"
+        )
         graph = get_graph(data_container.all_section_triples)
         nx.draw(
             graph,

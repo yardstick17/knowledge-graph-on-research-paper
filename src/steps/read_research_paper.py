@@ -25,5 +25,4 @@ class ReadResearchPaper(Step):
 
         # Remove line breaks
         s = s.replace("\n", " ").replace("\r", "")
-
         return s
