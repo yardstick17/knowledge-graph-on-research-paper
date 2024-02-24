@@ -22,6 +22,7 @@ def get_triplets(text):
     extracted_triplets = []
     logger.info(f"Got total extracted_text_list: {len(extracted_text_list)}")
     for extracted_text in extracted_text_list:
+        logger.info(f"Extracting relations for: {extracted_text}")
         extracted_triplets.extend(extract_triplets(extracted_text))
     return extracted_triplets
 
