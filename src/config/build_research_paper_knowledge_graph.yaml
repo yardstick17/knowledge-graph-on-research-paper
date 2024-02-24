@@ -1,0 +1,11 @@
+data:
+  research_paper_path: data/text_paper/aging.yaml
+
+output:
+  output_kg_plot_path: output/kg_plot.png
+
+steps:
+  - read-research-paper
+  - document-relation-extraction
+  - build-knowledge-graph
+
