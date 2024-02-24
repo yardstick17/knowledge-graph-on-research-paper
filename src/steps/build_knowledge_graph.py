@@ -20,7 +20,7 @@ class BuildKnowledgeGraph(Step):
             node_size=1500,
             edge_color="gray",
         )
-        plt.savefig(data_container.output_kg_plot_path, dpi=300, bbox_inches='tight')
+        plt.savefig(data_container.output_kg_plot_path, dpi=300, bbox_inches="tight")
         logger.info(
             f"Knowledge graph plot saved at: {data_container.output_kg_plot_path }"
         )

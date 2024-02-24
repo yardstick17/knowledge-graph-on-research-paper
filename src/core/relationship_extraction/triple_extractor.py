@@ -1,4 +1,8 @@
+import logging
+
 from transformers import pipeline
+
+logger = logging.getLogger(__name__)
 
 triplet_extractor = pipeline(
     "text2text-generation",
@@ -16,6 +20,7 @@ def get_triplets(text):
         ]
     )
     extracted_triplets = []
+    logger.info(f"Got total extracted_text_list: {len(extracted_text_list)}")
     for extracted_text in extracted_text_list:
         extracted_triplets.extend(extract_triplets(extracted_text))
     return extracted_triplets
