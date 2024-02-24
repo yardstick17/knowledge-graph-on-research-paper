@@ -3,8 +3,8 @@ import logging
 import click
 
 from interface import step_factory
-from src.data_container import DataContainer
-from src.utils import read_config
+from data_container import DataContainer
+from utils import read_config
 from steps.base import Step
 
 logging.basicConfig(level=logging.INFO)
