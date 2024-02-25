@@ -79,6 +79,14 @@ def _triplets_using_transformers(extracted_text):
     relation, subject, relation, object_ = "", "", "", ""
     extracted_text = extracted_text.strip()
     current = "x"
+    raw_text = (
+        extracted_text.replace("<s>", "")
+        .replace("<pad>", "")
+        .replace("</s>", "")
+        .split()
+    )
+    logger.info(f"raw_text: {raw_text}")
+
     for token in (
         extracted_text.replace("<s>", "")
         .replace("<pad>", "")
@@ -119,8 +127,15 @@ def _triplets_using_transformers(extracted_text):
             elif current == "o":
                 relation += " " + token
     if subject != "" and relation != "" and object_ != "":
+        logger.info(
+            f" <<SELECTED>> subject: {subject} relation: {relation} tail: {object_}"
+        )
         triplets.append(
             {"head": subject.strip(), "type": relation.strip(), "tail": object_.strip()}
+        )
+    else:
+        logger.info(
+            f" <<SKIPPED>> subject: {subject} relation: {relation} tail: {object_}"
         )
     return triplets
 
