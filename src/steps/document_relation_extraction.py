@@ -12,8 +12,9 @@ class DocumentRelationExtraction(Step):
         all_section_triples = []
         for section in data_container.document:
             logger.info(
-                f"Processing this section text: {section}. Total chars: {len(section)}"
+                f"Processing this section text: {section[:150]}... Total chars: {len(section)}"
             )
+            section = section.replace("\n", " ")
             result = get_triplets_using_transformers(section)
             all_section_triples.extend(result)
         data_container.all_section_triples = all_section_triples

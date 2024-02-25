@@ -43,9 +43,17 @@ def get_triplets_using_transformers(text):
     decoded_preds = tokenizer.batch_decode(generated_tokens, skip_special_tokens=False)
 
     # Extract triplets
+    """
+    Prediction triplets sentence 0
+    [{'head': 'life expectancy', 'type': 'facet of', 'tail': 'Longevity'}]
+    Prediction triplets sentence 1
+    [{'head': 'life expectancy of the Swedish population in 1996', 'type': 'instance of', 'tail': 'life expectancy'}]
+    Prediction triplets sentence 2
+    [{'head': 'average length of life', 'type': 'facet of', 'tail': 'Longevity'}]
+    """
     extracted_triplets = []
     for idx, extracted_text in enumerate(decoded_preds):
-        print(f"Prediction triplets sentence {idx}")
+        logger.info(f"Extracting relations for: {extracted_text}")
         extracted_triplets.extend(_triplets_using_transformers(extracted_text))
     return extracted_triplets
 
