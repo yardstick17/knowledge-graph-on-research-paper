@@ -5,11 +5,12 @@ from transformers import pipeline
 
 logger = logging.getLogger(__name__)
 
-triplet_extractor = pipeline(
-    "text2text-generation",
-    model="Babelscape/rebel-large",
-    tokenizer="Babelscape/rebel-large",
-)
+# triplet_extractor = pipeline(
+#     "text2text-generation",
+#     model="Babelscape/rebel-large",
+#     tokenizer="Babelscape/rebel-large",
+# )
+triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
 
 
 # Load model and tokenizer
