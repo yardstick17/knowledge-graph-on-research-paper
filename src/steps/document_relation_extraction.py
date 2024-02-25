@@ -1,6 +1,6 @@
 import logging
 
-from core.relationship_extraction.triple_extractor import get_triplets
+from core.relationship_extraction.triple_extractor import get_triplets, get_triplets_using_transformers
 from data_container import DataContainer
 from steps.base import Step
 
@@ -14,7 +14,7 @@ class DocumentRelationExtraction(Step):
             logger.info(
                 f"Processing this section text: {section}. Total chars: {len(section)}"
             )
-            result = get_triplets(section)
+            result = get_triplets_using_transformers(section)
             all_section_triples.extend(result)
         data_container.all_section_triples = all_section_triples
         return data_container
