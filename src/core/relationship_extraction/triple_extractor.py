@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 #     model="Babelscape/rebel-large",
 #     tokenizer="Babelscape/rebel-large",
 # )
-triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
+# triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
 
+triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large-32', tokenizer='Babelscape/mrebel-large-32')
 
 # Load model and tokenizer
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
