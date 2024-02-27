@@ -15,6 +15,24 @@ class BuildKnowledgeGraph(Step):
             f"Executing the build graph using: {len(data_container.all_section_triples)} elements"
         )
         graph = get_graph(data_container.all_section_triples)
+
+        links = []
+        data = {"object": None, "linkType": None, "dependentObject": None, "description": ""}
+        lol = set()
+        for item in data_container.all_section_triples:
+            data["object"] = item["head"]
+            data["dependentObject"] = item["tail"]
+            data["linkType"] = item["type"]
+            links.append(data)
+            lol.add(data["object"])
+            lol.add(data["dependentObject"])
+
+        plotting_data = {"nodes":list(lol), "links": links }
+
+        import json
+        with open('output/result.json', 'w') as fp:
+            json.dump(plotting_data, fp)
+
         nx.draw(
             graph,
             with_labels=True,
