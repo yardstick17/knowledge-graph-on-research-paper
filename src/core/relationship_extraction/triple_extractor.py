@@ -22,9 +22,10 @@ triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-la
 # model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
 
 
-tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
-model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
-
+# tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
+# model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
+tokenizer = AutoTokenizer.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
+model = AutoModelForSequenceClassification.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
 gen_kwargs = {
     "max_length": 256,
     "length_penalty": 0,
