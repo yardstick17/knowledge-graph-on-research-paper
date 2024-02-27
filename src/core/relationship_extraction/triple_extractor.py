@@ -5,25 +5,26 @@ from transformers import pipeline
 
 logger = logging.getLogger(__name__)
 
-# triplet_extractor = pipeline(
-#     "text2text-generation",
-#     model="Babelscape/rebel-large",
-#     tokenizer="Babelscape/rebel-large",
-# )
-triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
+triplet_extractor = pipeline(
+    "text2text-generation",
+    model="Babelscape/rebel-large",
+    tokenizer="Babelscape/rebel-large",
+)
 
-# triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large-32', tokenizer='Babelscape/mrebel-large-32')
 
 # Load model and tokenizer
+
+tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
+model = AutoModelForSeq2SeqLM.from_pretrained('allenai/scibert_scivocab_uncased')
+
+# Alternative Models
+
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
 # model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
 
-# tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
-# model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
+# tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
+# model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
 
-
-tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
-model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
 # model = AutoModelForSequenceClassification.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
 gen_kwargs = {
@@ -57,7 +58,7 @@ def get_triplets_using_transformers(paragraph):
         preds = tokenizer.batch_decode(generated_tokens, skip_special_tokens=False)
         decoded_preds.extend(preds)
 
-    # Extract triplets
+    # Example: Extract triplets
     """
     Prediction triplets sentence 0
     [{'head': 'life expectancy', 'type': 'facet of', 'tail': 'Longevity'}]
