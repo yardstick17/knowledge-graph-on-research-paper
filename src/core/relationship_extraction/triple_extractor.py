@@ -1,7 +1,6 @@
 import logging
-from transformers import AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoModelForTokenClassification, \
-    AutoTokenizer
 
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from transformers import pipeline
 
 logger = logging.getLogger(__name__)
@@ -38,8 +37,9 @@ gen_kwargs = {
 def get_triplets_using_transformers(paragraph):
     # text: Text to extract triplets from
 
-    text_list = paragraph.split(".")
-    decoded_preds =  []
+    # text_list = paragraph.split(".")
+    text_list = [paragraph]
+    decoded_preds = []
     for text in text_list:
         # Tokenizer text
         model_inputs = tokenizer(
