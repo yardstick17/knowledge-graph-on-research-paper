@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 #     model="Babelscape/rebel-large",
 #     tokenizer="Babelscape/rebel-large",
 # )
-# triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
+triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large', tokenizer='Babelscape/mrebel-large')
 
-triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large-32', tokenizer='Babelscape/mrebel-large-32')
+# triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large-32', tokenizer='Babelscape/mrebel-large-32')
 
 # Load model and tokenizer
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
@@ -35,23 +35,27 @@ gen_kwargs = {
 }
 
 
-def get_triplets_using_transformers(text):
+def get_triplets_using_transformers(paragraph):
     # text: Text to extract triplets from
 
-    # Tokenizer text
-    model_inputs = tokenizer(
-        text, max_length=256, padding=True, truncation=True, return_tensors="pt"
-    )
+    text_list = paragraph.split(".")
+    decoded_preds =  []
+    for text in text_list:
+        # Tokenizer text
+        model_inputs = tokenizer(
+            text, max_length=256, padding=True, truncation=True, return_tensors="pt"
+        )
 
-    # Generate
-    generated_tokens = model.generate(
-        model_inputs["input_ids"].to(model.device),
-        attention_mask=model_inputs["attention_mask"].to(model.device),
-        **gen_kwargs,
-    )
+        # Generate
+        generated_tokens = model.generate(
+            model_inputs["input_ids"].to(model.device),
+            attention_mask=model_inputs["attention_mask"].to(model.device),
+            **gen_kwargs,
+        )
 
-    # Extract text
-    decoded_preds = tokenizer.batch_decode(generated_tokens, skip_special_tokens=False)
+        # Extract text
+        preds = tokenizer.batch_decode(generated_tokens, skip_special_tokens=False)
+        decoded_preds.extend(preds)
 
     # Extract triplets
     """
