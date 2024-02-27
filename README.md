@@ -33,7 +33,7 @@ steps:
 ````
 
 #### Results
-This KG plot is based on the first two section of the research paper.
+This KG plot is based on the **first two section of** the research paper: "Determinants of longevity: genetic, environmental and medical factors"
 
 ![Result KG](kg_plot.png)
 
