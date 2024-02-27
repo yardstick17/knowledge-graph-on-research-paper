@@ -1,5 +1,6 @@
 import logging
-from transformers import AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoModelForTokenClassification, \
+    AutoTokenizer
 
 from transformers import pipeline
 
@@ -17,8 +18,12 @@ triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-la
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
 # model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
 
-tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
-model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
+# tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
+# model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
+
+
+tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
+model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
 
 gen_kwargs = {
     "max_length": 256,
