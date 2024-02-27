@@ -1,6 +1,6 @@
 import logging
 
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoModelForTokenClassification, AutoTokenizer
 from transformers import pipeline
 
 logger = logging.getLogger(__name__)
@@ -15,15 +15,15 @@ triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-la
 # triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-large-32', tokenizer='Babelscape/mrebel-large-32')
 
 # Load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
-model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
+# tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
+# model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
 
 # tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
 # model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
 
 
-# tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
-# model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
+tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
+model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
 # model = AutoModelForSequenceClassification.from_pretrained("Babelscape/mdeberta-v3-base-triplet-critic-xnli")
 gen_kwargs = {
