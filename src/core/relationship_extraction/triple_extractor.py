@@ -1,5 +1,5 @@
 import logging
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoTokenizer
 
 from transformers import pipeline
 
@@ -14,8 +14,12 @@ triplet_extractor = pipeline('translation_xx_to_yy', model='Babelscape/mrebel-la
 
 
 # Load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
-model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
+# tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
+# model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
+
+tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
+model = AutoModelForSequenceClassification.from_pretrained('allenai/scibert_scivocab_uncased')
+
 gen_kwargs = {
     "max_length": 256,
     "length_penalty": 0,
@@ -25,8 +29,7 @@ gen_kwargs = {
 
 
 def get_triplets_using_transformers(text):
-    # Text to extract triplets from
-    # text = 'Punta Cana is a resort town in the municipality of Higüey, in La Altagracia Province, the easternmost province of the Dominican Republic.'
+    # text: Text to extract triplets from
 
     # Tokenizer text
     model_inputs = tokenizer(
