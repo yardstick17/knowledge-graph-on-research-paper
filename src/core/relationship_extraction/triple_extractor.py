@@ -14,13 +14,13 @@ triplet_extractor = pipeline(
 
 # Load model and tokenizer
 
-tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
-model = AutoModelForSeq2SeqLM.from_pretrained('allenai/scibert_scivocab_uncased')
+# tokenizer = AutoTokenizer.from_pretrained('allenai/scibert_scivocab_uncased')
+# model = AutoModelForSeq2SeqLM.from_pretrained('allenai/scibert_scivocab_uncased')
 
 # Alternative Models
 
-# tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
-# model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
+tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
+model = AutoModelForSeq2SeqLM.from_pretrained("Babelscape/rebel-large")
 
 # tokenizer = AutoTokenizer.from_pretrained("Babelscape/wikineural-multilingual-ner")
 # model = AutoModelForTokenClassification.from_pretrained("Babelscape/wikineural-multilingual-ner")
@@ -210,17 +210,3 @@ def extract_triplets(extracted_text):
 
 if __name__ == "__main__":
     pass
-    # # We need to use the tokenizer manually since we need special tokens.
-    # extracted_text_list = triplet_extractor.tokenizer.batch_decode(
-    #     [
-    #         triplet_extractor(
-    #             "Punta Cana is a resort town in the municipality of Higuey, in La Altagracia Province, the eastern most province of the Dominican Republic",
-    #             return_tensors=True,
-    #             return_text=False,
-    #         )[0]["generated_token_ids"]
-    #     ]
-    # )
-    #
-    # print(extracted_text_list[0])
-    # extracted_triplets = extract_triplets(extracted_text_list[0])
-    # print(extracted_triplets)

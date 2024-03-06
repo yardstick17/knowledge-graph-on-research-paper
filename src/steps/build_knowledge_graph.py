@@ -27,7 +27,7 @@ class BuildKnowledgeGraph(Step):
             lol.add(data["object"])
             lol.add(data["dependentObject"])
 
-        plotting_data = {"nodes":list(lol), "links": links }
+        plotting_data = {"nodes": list(lol), "links": links }
 
         import json
         with open('output/result.json', 'w') as fp:
