@@ -61,7 +61,8 @@ Limited open-source to explore how it does on a sample sentence/document.
 
 ### DeepKE: A Deep Learning Based Knowledge Extraction Toolkit for Knowledge Graph Construction
 https://github.com/zjunlp/DeepKE
-Powerful algorithms but for relation extraction but limited access to English language pre-trained model.
+A great collection of NLP related tasks like relation extraction. The downside is limited access to English language pre-trained model.
+They do provide ways to train your model on custom datasets. It can be handy.
 
 
 #### RSMAN:Relation-Specific Attentions over Entity Mentions for Enhanced Document-Level Relation Extraction
